@@ -17,7 +17,7 @@ if choices =='A':
     url = url+filepath
     response = req.get(url)
     print("reply: ",response.text)
-if choices='B':
+if choices=='B':
     filepath = input("Enter the file name:")
     url = url+filepath
     content = "hello"
@@ -28,3 +28,14 @@ if choices=='C':
     url = url+filepath
     response = req.delete(url)
     print("File deleted")
+
+    """
+    response = req.get(url, auth=HTTPBasicAuth(username,password))
+    #print("File: ",response.json())
+    print("Response: ",response.text)
+    url = "http://0.0.0.0:8080/filepath/DFS_Test/ex.txt"
+    filepath = input("Enter the file name:")
+    url = url+filepath
+    response = req.get(url)
+    print("Response: ",response.text)
+    """
