@@ -5,19 +5,16 @@ import utils
 
 
 class DFSError(IOError):
-    """To send error in case of file locked"""
+
 
     pass
 
 
 class File(SpooledTemporaryFile):
-    """Is a distant file, it's stored in memory if it size if less than
-       the max_size parameter, otherwise it's stored on the disk.
-    """
+
 
     def __init__(self, filepath, mode='rtc'):
-        """filepath: the path of the distant file
-        """
+
         self.mode = mode
         self.filepath = filepath
         host, port = utils.get_host_port(_config['nameserver'])
@@ -62,7 +59,7 @@ class File(SpooledTemporaryFile):
             File._cache[filepath] = self
 
     def __exit__(self, exc, value, tb):
-        """Send the change to the DFS, and close the file."""
+
 
         self.close()
 
@@ -72,7 +69,7 @@ class File(SpooledTemporaryFile):
         return False
 
     def close(self):
-        """Send the change to the DFS, and close the file."""
+
 
         self.flush()
 
@@ -80,13 +77,13 @@ class File(SpooledTemporaryFile):
             SpooledTemporaryFile.close(self)
 
     def flush(self):
-        """Flush the data to the server."""
+
 
         SpooledTemporaryFile.flush(self)
         self.commit()
 
     def commit(self):
-        """Send the local file to the remote fileserver."""
+
 
         if 'a' in self.mode or 'w' in self.mode:
             # send the file from the begining
@@ -110,7 +107,7 @@ class File(SpooledTemporaryFile):
 
     @staticmethod
     def from_cache(filepath):
-        """save file in local disk"""
+
         if filepath in File._cache:
             f = File._cache[filepath]
 
@@ -132,8 +129,7 @@ class File(SpooledTemporaryFile):
 
 
 def unlink(filepath, lock_id=None):
-    """Delete the file from the filesystem.
-       If lock_id is provided, it's used to delete the file."""
+
 
     host, port = utils.get_host_port(_config['nameserver'])
     fs = utils.get_server(filepath, host, port)
@@ -150,7 +146,7 @@ def unlink(filepath, lock_id=None):
 
 
 def rename(filepath, newfilepath):
-    """Rename filepath to newfilepath."""
+
 
     with open(filepath) as f:
         with open(newfilepath, 'w') as nf:
@@ -175,19 +171,16 @@ import utils
 
 
 class DFSError(IOError):
-    """To send error in case of file locked"""
+
 
     pass
 
 
 class File(SpooledTemporaryFile):
-    """Is a distant file, it's stored in memory if it size if less than
-       the max_size parameter, otherwise it's stored on the disk.
-    """
+
 
     def __init__(self, filepath, mode='rtc'):
-        """filepath: the path of the distant file
-        """
+
         self.mode = mode
         self.filepath = filepath
         host, port = utils.get_host_port(_config['nameserver'])
@@ -242,7 +235,7 @@ class File(SpooledTemporaryFile):
         return False
 
     def close(self):
-        """Send the change to the DFS, and close the file."""
+
 
         self.flush()
 
@@ -250,13 +243,13 @@ class File(SpooledTemporaryFile):
             SpooledTemporaryFile.close(self)
 
     def flush(self):
-        """Flush the data to the server."""
+
 
         SpooledTemporaryFile.flush(self)
         self.commit()
 
     def commit(self):
-        """Send the local file to the remote fileserver."""
+
 
         if 'a' in self.mode or 'w' in self.mode:
             # send the file from the begining
@@ -280,7 +273,7 @@ class File(SpooledTemporaryFile):
 
     @staticmethod
     def from_cache(filepath):
-        """save file in local disk"""
+
         if filepath in File._cache:
             f = File._cache[filepath]
 
@@ -302,8 +295,7 @@ class File(SpooledTemporaryFile):
 
 
 def unlink(filepath, lock_id=None):
-    """Delete the file from the filesystem.
-       If lock_id is provided, it's used to delete the file."""
+
 
     host, port = utils.get_host_port(_config['nameserver'])
     fs = utils.get_server(filepath, host, port)
@@ -320,7 +312,7 @@ def unlink(filepath, lock_id=None):
 
 
 def rename(filepath, newfilepath):
-    """Rename filepath to newfilepath."""
+
 
     with open(filepath) as f:
         with open(newfilepath, 'w') as nf:
