@@ -22,7 +22,7 @@ if choices=='B':
     url = url+filepath
     content = "hello"
     response= req.post(url, content)
-    print("reply: ",reply.text)
+    print("reply: ",response.text)
 if choices=='C':
     filepath = input("Enter the file name:")
     url = url+filepath
