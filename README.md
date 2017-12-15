@@ -1,0 +1,2 @@
+# Distributed-System-
+Distributed File Systems is an application based on the client-server application that allows a client to access data and in many cases, it allows client to write data. For example, one can access a distant computer ‘s data from other location provided they have proper connection and setup. When a user accesses a file on the server, the server sends the user a copy of the file, which is cached on the user’s computer while the data is being processed and is then returned to the server
